@@ -51,6 +51,7 @@ public class TastyToast extends AppCompatActivity {
 
         switch (type) {
             case 1: {
+                //put text in center of textview
                 imageView.setImageResource(R.drawable.success_image);
                 text.setBackgroundResource(R.drawable.success_toast);
                 imageView.setAnimation(animation);
