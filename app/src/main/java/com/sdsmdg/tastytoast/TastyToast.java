@@ -12,30 +12,29 @@ import android.widget.Toast;
 
 public class TastyToast extends AppCompatActivity {
 
+    public static int LENGTH_SHORT = 0;
+    public static int LENGTH_LONG = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tasty_toast);
     }
     public void showToast(View view) {
-        // Toast.makeText(MyToast.this, "", Toast.LENGTH_SHORT).show();
-        makeText(getApplicationContext(), "I am Rahul Yadav and I am awesome. I am Rahul Yadav and I am awesome. I am Rahul Yadav and I am awesome.", Toast.LENGTH_LONG);
+        makeText(getApplicationContext(), "This is an example of Custom Toast.", TastyToast.LENGTH_LONG);
     }
 
-    public void makeText(Context myToast, String msg, int lenght) {
+
+    public void makeText(Context context, String msg, int lenght) {
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.my_toast_layout,
                 (ViewGroup) findViewById(R.id.root_layout));
 
-        //Add separate drawable for each default type and then add through background resource
-        // with rounded colore and alos specify default text coloe
-        //for each
         TextView text = (TextView) layout.findViewById(R.id.toastMessage);
         text.setText(msg);
-        text.setBackgroundResource(R.drawable.roundcorner);
+        text.setBackgroundResource(R.drawable.sucess_toast);
         text.setTextColor(Color.parseColor("#FFFFFF"));
         Toast toast = new Toast(getApplicationContext());
-        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setDuration(lenght);
         toast.setView(layout);
         toast.show();
     }
