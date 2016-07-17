@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,39 +27,44 @@ public class TastyToast extends AppCompatActivity {
         setContentView(R.layout.activity_tasty_toast);
     }
 
-    public void showSucessToast(View view) {
-        makeText(getApplicationContext(), "This is an example of Custom Toast.", TastyToast.LENGTH_LONG,
+    public void showSuccessToast(View view) {
+        makeText(getApplicationContext(), "Download Successful !", TastyToast.LENGTH_LONG,
                 TastyToast.SUCCESS);
     }
 
     public void showDangerToast(View view) {
-        makeText(getApplicationContext(), "This is an example of Custom Toast.", TastyToast.LENGTH_LONG,
+        makeText(getApplicationContext(), "Are you sure ?", TastyToast.LENGTH_LONG,
                 TastyToast.DANGER);
     }
 
 
-    public void makeText(Context context, String msg, int lenght, int type) {
+    public void makeText(Context context, String msg, int length, int type) {
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.my_toast_layout,
                 (ViewGroup) findViewById(R.id.root_layout));
 
         TextView text = (TextView) layout.findViewById(R.id.toastMessage);
+        ImageView imageView = (ImageView) layout.findViewById(R.id.imageView);
         text.setText(msg);
+       // LinearLayout baseLayout = (LinearLayout) layout.findViewById(R.id.base_layout);
+        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade);
 
-        text.setBackgroundResource(R.drawable.success_toast);
         switch (type) {
             case 1: {
+                imageView.setImageResource(R.drawable.success_image);
                 text.setBackgroundResource(R.drawable.success_toast);
+                imageView.setAnimation(animation);
                 break;
             }
             case 2: {
-                text.setBackgroundResource(R.drawable.danger_toast);
-
+                imageView.setImageResource(R.drawable.warning_image);
+                text.setBackgroundResource(R.drawable.warning_toast);
+                imageView.setAnimation(animation);
             }
         }
         text.setTextColor(Color.parseColor("#FFFFFF"));
         Toast toast = new Toast(context);
-        toast.setDuration(lenght);
+        toast.setDuration(length);
         toast.setView(layout);
         toast.show();
     }

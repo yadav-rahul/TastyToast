@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sucess Toast"
-        android:onClick="showSucessToast"
+        android:onClick="showSuccessToast"
         android:id="@+id/button"
         android:layout_marginTop="34dp"
         android:layout_alignParentTop="true"
