@@ -1,63 +1,40 @@
 package com.sdsmdg.tastytoast;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.graphics.Canvas;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
-public class TastyToast extends AppCompatActivity {
+/**
+ * Created by rahul on 17/7/16.
+ */
+public class TastyToast extends View {
 
-    public static final int LENGTH_SHORT = 0;
-    public static final int LENGTH_LONG = 1;
-
-    public static final int SUCCESS = 1;
-    public static final int DANGER = 2;
+    private int textLength = 0;
+    public TastyToast(Context context, int textLength) {
+        super(context);
+        this.textLength = textLength;
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tasty_toast);
-    }
+    protected void onDraw(Canvas canvas) {
+        //Get length of string the user has entered
+        switch ((textLength)/10){
+            case 0:{
+                //Add only three default blocks
 
-    public void showSucessToast(View view) {
-        makeText(getApplicationContext(), "This is an example of Custom Toast.", TastyToast.LENGTH_LONG,
-                TastyToast.SUCCESS);
-    }
-
-    public void showDangerToast(View view) {
-        makeText(getApplicationContext(), "This is an example of Custom Toast.", TastyToast.LENGTH_LONG,
-                TastyToast.DANGER);
-    }
-
-
-    public void makeText(Context context, String msg, int lenght, int type) {
-        LayoutInflater inflater = getLayoutInflater();
-        View layout = inflater.inflate(R.layout.my_toast_layout,
-                (ViewGroup) findViewById(R.id.root_layout));
-
-        TextView text = (TextView) layout.findViewById(R.id.toastMessage);
-        text.setText(msg);
-
-        text.setBackgroundResource(R.drawable.success_toast);
-        switch (type) {
-            case 1: {
-                text.setBackgroundResource(R.drawable.success_toast);
-                break;
             }
-            case 2: {
-                text.setBackgroundResource(R.drawable.danger_toast);
+            case 1:{
+                //Add four blocks
+            }
+            case 2:{
+                //Add five blocks
+            }
+            case 3:{
 
             }
         }
-        text.setTextColor(Color.parseColor("#FFFFFF"));
-        Toast toast = new Toast(context);
-        toast.setDuration(lenght);
-        toast.setView(layout);
-        toast.show();
+
+        super.onDraw(canvas);
     }
 }
