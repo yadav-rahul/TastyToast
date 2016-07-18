@@ -41,10 +41,6 @@ public class TastyToastActivity extends AppCompatActivity {
 
         Toast toast = new Toast(context);
 
-        TastyToast tastyToast = new TastyToast(this, count);
-
-
-        toast.setView();
         toast.show();
     }
 }
