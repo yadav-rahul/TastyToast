@@ -37,6 +37,18 @@ public class TastyToast extends AppCompatActivity {
                 TastyToast.DANGER);
     }
 
+    public void showSuccessLongToast(View view) {
+        makeText(getApplicationContext(), "Download Successful ! Download Successful ! " +
+                "Download Successful ! Download Successful ! Download Successful !", TastyToast.LENGTH_LONG,
+                TastyToast.SUCCESS);
+    }
+
+    public void showDangerLongToast(View view) {
+        makeText(getApplicationContext(), "Are you sure ? Are you sure ? Are you sure ?" +
+                "Are you sure ? Are you sure ?", TastyToast.LENGTH_LONG,
+                TastyToast.DANGER);
+    }
+
 
     public void makeText(Context context, String msg, int length, int type) {
         LayoutInflater inflater = getLayoutInflater();
@@ -51,7 +63,6 @@ public class TastyToast extends AppCompatActivity {
 
         switch (type) {
             case 1: {
-                //put text in center of textview
                 Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade);
                 imageView.setImageResource(R.drawable.success_image);
                 text.setBackgroundResource(R.drawable.success_toast);
