@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".TastyToast"
-        >
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
