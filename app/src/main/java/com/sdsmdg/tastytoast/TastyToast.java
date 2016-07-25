@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,7 +72,7 @@ public class TastyToast extends AppCompatActivity {
                 // Create a system to run the physics loop for a set of springs.
                 SpringSystem springSystem = SpringSystem.create();
                 final Spring spring = springSystem.createSpring();
-                spring.setCurrentValue(2);
+                spring.setCurrentValue(1.8);
                 spring.addListener(new SimpleSpringListener() {
 
                     @Override
@@ -81,8 +80,8 @@ public class TastyToast extends AppCompatActivity {
                         // You can observe the updates in the spring
                         // state by asking its current value in onSpringUpdate.
                         float value = (float) spring.getCurrentValue();
-                        float scale = 1f - (value * 0.5f);
-                        Log.i("harshit", scale + "");
+                        float scale = (float) (0.9 - (value * 0.5f));
+
                         warningToastView.setScaleX(scale);
                         warningToastView.setScaleY(scale);
                     }
@@ -92,7 +91,8 @@ public class TastyToast extends AppCompatActivity {
                     public void run() {
                         try {
                             Thread.sleep(500);
-                        }catch (InterruptedException e) { }
+                        } catch (InterruptedException e) {
+                        }
                         spring.setEndValue(0.4f);
                     }
                 });
