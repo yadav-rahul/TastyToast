@@ -1,6 +1,5 @@
 package com.sdsmdg.tastytoast;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -9,7 +8,6 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.animation.LinearInterpolator;
 
 /**
  * Created by rahul on 25/7/16.
@@ -20,15 +18,12 @@ public class WarningToastView extends View {
     RectF rectFOne = new RectF();
     RectF rectFTwo = new RectF();
     RectF rectFThree = new RectF();
-    ValueAnimator valueAnimator;
-    float mAnimatedValue = 0f;
     private Paint mPaint;
     private float mWidth = 0f;
     private float mHeight = 0f;
     private float mStrokeWidth = 0f;
     private float mPadding = 0f;
     private float endAngle = 0f;
-    private boolean drawLineOne = false;
 
     public WarningToastView(Context context) {
         super(context);
@@ -103,48 +98,5 @@ public class WarningToastView extends View {
         DisplayMetrics metrics = getContext().getResources().getDisplayMetrics();
         float px = dp * ((float) metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
         return px;
-    }
-
-    public void startAnim() {
-        stopAnim();
-        startViewAnim(0f, 5f, 2000);
-    }
-
-    public void stopAnim() {
-        if (valueAnimator != null) {
-            clearAnimation();
-
-
-            mAnimatedValue = 0f;
-            valueAnimator.end();
-        }
-    }
-
-
-    private ValueAnimator startViewAnim(float startF, final float endF, long time) {
-        valueAnimator = ValueAnimator.ofFloat(startF, endF);
-        valueAnimator.setDuration(time);
-        valueAnimator.setInterpolator(new LinearInterpolator());
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-
-                mAnimatedValue = (float) valueAnimator.getAnimatedValue();
-                if (mAnimatedValue < 0.5) {
-                    // endAngle = -240 * (mAnimatedValue);
-                    // endAngle = -140;
-                } else {
-                    drawLineOne = true;
-                }
-
-                invalidate();
-            }
-        });
-
-        if (!valueAnimator.isRunning()) {
-            valueAnimator.start();
-
-        }
-        return valueAnimator;
     }
 }

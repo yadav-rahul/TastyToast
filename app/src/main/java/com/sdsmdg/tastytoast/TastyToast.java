@@ -4,13 +4,17 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.facebook.rebound.SimpleSpringListener;
+import com.facebook.rebound.Spring;
+import com.facebook.rebound.SpringSystem;
 
 public class TastyToast extends AppCompatActivity {
 
@@ -64,9 +68,38 @@ public class TastyToast extends AppCompatActivity {
 
                 TextView text = (TextView) layout.findViewById(R.id.toastMessage);
                 text.setText(msg);
+
                 warningToastView = (WarningToastView) layout.findViewById(R.id.warningView);
-                warningToastView.startAnimation(AnimationUtils.loadAnimation(context, R.anim.warning_anim));
-                warningToastView.startAnim();
+                // Create a system to run the physics loop for a set of springs.
+                SpringSystem springSystem = SpringSystem.create();
+                final Spring spring = springSystem.createSpring();
+                spring.setCurrentValue(2);
+                spring.addListener(new SimpleSpringListener() {
+
+                    @Override
+                    public void onSpringUpdate(Spring spring) {
+                        // You can observe the updates in the spring
+                        // state by asking its current value in onSpringUpdate.
+                        float value = (float) spring.getCurrentValue();
+                        float scale = 1f - (value * 0.5f);
+                        Log.i("harshit", scale + "");
+                        warningToastView.setScaleX(scale);
+                        warningToastView.setScaleY(scale);
+                    }
+                });
+                Thread t = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(500);
+                        }catch (InterruptedException e) { }
+                        spring.setEndValue(0.4f);
+                    }
+                });
+
+                t.start();
+
+
                 text.setBackgroundResource(R.drawable.warning_toast);
                 text.setTextColor(Color.parseColor("#FFFFFF"));
                 toast.setView(layout);
