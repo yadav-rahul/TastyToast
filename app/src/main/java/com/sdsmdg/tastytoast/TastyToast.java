@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.facebook.rebound.SimpleSpringListener;
 import com.facebook.rebound.Spring;
+import com.facebook.rebound.SpringConfig;
 import com.facebook.rebound.SpringSystem;
 
 public class TastyToast extends AppCompatActivity {
@@ -81,6 +82,8 @@ public class TastyToast extends AppCompatActivity {
                 SpringSystem springSystem = SpringSystem.create();
                 final Spring spring = springSystem.createSpring();
                 spring.setCurrentValue(1.8);
+                SpringConfig config = new SpringConfig(40, 5);
+                spring.setSpringConfig(config);
                 spring.addListener(new SimpleSpringListener() {
 
                     @Override
@@ -88,7 +91,7 @@ public class TastyToast extends AppCompatActivity {
                         // You can observe the updates in the spring
                         // state by asking its current value in onSpringUpdate.
                         float value = (float) spring.getCurrentValue();
-                        float scale = (float) (0.9 - (value * 0.5f));
+                        float scale = (float) (0.9f - (value * 0.5f));
 
                         warningToastView.setScaleX(scale);
                         warningToastView.setScaleY(scale);
