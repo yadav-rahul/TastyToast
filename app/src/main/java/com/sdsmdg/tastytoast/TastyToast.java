@@ -21,8 +21,11 @@ public class TastyToast extends AppCompatActivity {
     public static final int LENGTH_LONG = 1;
     public static final int SUCCESS = 1;
     public static final int WARNING = 2;
+    public static final int ERROR = 3;
+
     SuccessToastView successToastView;
     WarningToastView warningToastView;
+    ErrorToastView errorToastView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,11 @@ public class TastyToast extends AppCompatActivity {
     public void showWarningToast(View view) {
         makeText(getApplicationContext(), "Are you sure ?", TastyToast.LENGTH_LONG,
                 TastyToast.WARNING);
+    }
+
+    public void showErrorToast(View view) {
+        makeText(getApplicationContext(), "Downloading failed ! Try again later ", TastyToast.LENGTH_LONG,
+                TastyToast.ERROR);
     }
 
 
@@ -101,6 +109,21 @@ public class TastyToast extends AppCompatActivity {
 
 
                 text.setBackgroundResource(R.drawable.warning_toast);
+                text.setTextColor(Color.parseColor("#FFFFFF"));
+                toast.setView(layout);
+                break;
+            }
+            case 3: {
+
+                View layout = inflater.inflate(R.layout.error_toast_layout,
+                        (ViewGroup) findViewById(R.id.root_layout));
+
+
+                TextView text = (TextView) layout.findViewById(R.id.toastMessage);
+                text.setText(msg);
+                errorToastView = (ErrorToastView) layout.findViewById(R.id.errorView);
+                errorToastView.startAnim();
+                text.setBackgroundResource(R.drawable.error_toast);
                 text.setTextColor(Color.parseColor("#FFFFFF"));
                 toast.setView(layout);
                 break;

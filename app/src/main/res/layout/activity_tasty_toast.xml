@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,6 +12,7 @@
     tools:context=".TastyToast">
 
     <Button
+        android:layout_weight="1"
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,12 +22,22 @@
         android:text="Download" />
 
     <Button
+        android:layout_weight="1"
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/button"
-        android:layout_centerHorizontal="true"
         android:onClick="showWarningToast"
+        android:layout_centerHorizontal="true"
         android:text="Warning" />
 
-</RelativeLayout>
+    <Button
+        android:layout_weight="1"
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button"
+        android:layout_centerHorizontal="true"
+        android:onClick="showErrorToast"
+        android:text="Error" />
+</LinearLayout>
