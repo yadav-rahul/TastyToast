@@ -3,6 +3,10 @@ Make your native android toast look beautiful.
 
 ## Preview
 ![gif](https://github.com/yadav-rahul/TastyToast/blob/master/static/success.gif)
+![gif](https://github.com/yadav-rahul/TastyToast/blob/master/static/warning.gif)
+![gif](https://github.com/yadav-rahul/TastyToast/blob/master/static/error.gif)
+![gif](https://github.com/yadav-rahul/TastyToast/blob/master/static/info.gif)
+![gif](https://github.com/yadav-rahul/TastyToast/blob/master/static/default.gif)
 
 ## Contributing
 
