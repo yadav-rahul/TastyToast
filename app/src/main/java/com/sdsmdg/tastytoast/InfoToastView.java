@@ -25,8 +25,9 @@ public class InfoToastView extends View {
     private float mEyeWidth = 0f;
     private float mPadding = 0f;
     private float endPoint = 0f;
-    private boolean isSwing = false;
-    private boolean isShow = false;
+    private boolean isEyeLeft = false;
+    private boolean isEyeRight = false;
+    private boolean isEyeMiddle = false;
 
     public InfoToastView(Context context) {
         super(context);
@@ -72,13 +73,17 @@ public class InfoToastView extends View {
 
         mPaint.setStyle(Paint.Style.FILL);
 
-        if (isSwing) {
+        if (isEyeLeft) {
             canvas.drawCircle(mPadding + mEyeWidth, mWidth / 3, mEyeWidth, mPaint);
             canvas.drawCircle(mWidth - mPadding - 2 * mEyeWidth, mWidth / 3, mEyeWidth, mPaint);
         }
 
+        if (isEyeMiddle) {
+            canvas.drawCircle(mPadding + (3 * mEyeWidth / 2), mWidth / 3, mEyeWidth, mPaint);
+            canvas.drawCircle(mWidth - mPadding - (5 * mEyeWidth / 2), mWidth / 3, mEyeWidth, mPaint);
+        }
 
-        if (isShow) {
+        if (isEyeRight) {
             canvas.drawCircle(mPadding + 2 * mEyeWidth, mWidth / 3, mEyeWidth, mPaint);
             canvas.drawCircle(mWidth - mPadding - mEyeWidth, mWidth / 3, mEyeWidth, mPaint);
         }
@@ -98,8 +103,9 @@ public class InfoToastView extends View {
     public void stopAnim() {
         if (valueAnimator != null) {
             clearAnimation();
-            isSwing = false;
-            isShow = false;
+            isEyeLeft = false;
+            isEyeMiddle = false;
+            isEyeRight = false;
             endPoint = mPadding;
             mAnimatedValue = 0f;
             valueAnimator.end();
@@ -117,30 +123,34 @@ public class InfoToastView extends View {
                 mAnimatedValue = (float) valueAnimator.getAnimatedValue();
 
                 //   Log.i(TAG, "Value : " + mAnimatedValue);
-                if (mAnimatedValue < 0.85) {
-                    endPoint = ((2 * (mWidth) - (3 * mPadding)) * (mAnimatedValue / 2)) + mPadding;
+                if (mAnimatedValue < 0.90) {
+                    endPoint = ((2 * (mWidth) - (4 * mPadding)) * (mAnimatedValue / 2)) + mPadding;
                 } else {
-                    endPoint = mWidth - mPadding;
+                    endPoint = mWidth - 5 * mPadding / 4;
                 }
 
                 if (mAnimatedValue < 0.16) {
-                    isShow = true;
-                    isSwing = false;
+                    isEyeRight = true;
+                    isEyeLeft = false;
                 } else if (mAnimatedValue < 0.32) {
-                    isShow = false;
-                    isSwing = true;
+                    isEyeRight = false;
+                    isEyeLeft = true;
                 } else if (mAnimatedValue < 0.48) {
-                    isShow = true;
-                    isSwing = false;
+                    isEyeRight = true;
+                    isEyeLeft = false;
                 } else if (mAnimatedValue < 0.64) {
-                    isShow = false;
-                    isSwing = true;
+                    isEyeRight = false;
+                    isEyeLeft = true;
                 } else if (mAnimatedValue < 0.80) {
-                    isShow = true;
-                    isSwing = false;
-                } else if (mAnimatedValue < 1.00) {
-                    isShow = false;
-                    isSwing = true;
+                    isEyeRight = true;
+                    isEyeLeft = false;
+                } else if (mAnimatedValue < 0.96) {
+                    isEyeRight = false;
+                    isEyeLeft = true;
+                } else {
+                    isEyeLeft = false;
+                    isEyeMiddle = true;
+                    isEyeRight = false;
                 }
 
                 invalidate();
