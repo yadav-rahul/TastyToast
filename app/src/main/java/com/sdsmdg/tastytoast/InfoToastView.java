@@ -69,7 +69,7 @@ public class InfoToastView extends View {
         rectF = new RectF(mPadding, mPadding, mWidth - mPadding, mWidth - mPadding);
         mPaint.setStyle(Paint.Style.STROKE);
 
-        canvas.drawLine(mPadding, mWidth - mPadding, endPoint, mWidth - mPadding, mPaint);
+        canvas.drawLine(mPadding, mWidth - 3 * mPadding / 2, endPoint, mWidth - 3 * mPadding / 2, mPaint);
 
         mPaint.setStyle(Paint.Style.FILL);
 

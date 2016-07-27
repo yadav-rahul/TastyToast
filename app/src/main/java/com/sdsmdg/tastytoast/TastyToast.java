@@ -2,7 +2,6 @@ package com.sdsmdg.tastytoast;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.icu.text.IDNA;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -31,6 +30,7 @@ public class TastyToast extends AppCompatActivity {
     WarningToastView warningToastView;
     ErrorToastView errorToastView;
     InfoToastView infoToastView;
+    DefaultToastView defaultToastView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +58,12 @@ public class TastyToast extends AppCompatActivity {
         makeText(getApplicationContext(), "Searching for username : 'Rahul' ", TastyToast.LENGTH_LONG,
                 TastyToast.INFO);
     }
+
+    public void showDefaultToast(View view) {
+        makeText(getApplicationContext(), "This is Default Toast", TastyToast.LENGTH_LONG,
+                TastyToast.DEFAULT);
+    }
+
 
 
     public void makeText(Context context, String msg, int length, int type) {
@@ -146,8 +152,16 @@ public class TastyToast extends AppCompatActivity {
                 break;
             }
             case 5: {
+                View layout = inflater.inflate(R.layout.default_toast_layout,
+                        (ViewGroup) findViewById(R.id.root_layout));
 
-
+                TextView text = (TextView) layout.findViewById(R.id.toastMessage);
+                text.setText(msg);
+                defaultToastView = (DefaultToastView) layout.findViewById(R.id.defaultView);
+                defaultToastView.startAnim();
+                text.setBackgroundResource(R.drawable.default_toast);
+                text.setTextColor(Color.parseColor("#FFFFFF"));
+                toast.setView(layout);
                 break;
             }
         }
