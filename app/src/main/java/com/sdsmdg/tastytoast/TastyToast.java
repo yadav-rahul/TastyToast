@@ -2,6 +2,7 @@ package com.sdsmdg.tastytoast;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.icu.text.IDNA;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -23,10 +24,13 @@ public class TastyToast extends AppCompatActivity {
     public static final int SUCCESS = 1;
     public static final int WARNING = 2;
     public static final int ERROR = 3;
+    public static final int INFO = 4;
+    public static final int DEFAULT = 5;
 
     SuccessToastView successToastView;
     WarningToastView warningToastView;
     ErrorToastView errorToastView;
+    InfoToastView infoToastView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,10 @@ public class TastyToast extends AppCompatActivity {
     public void showErrorToast(View view) {
         makeText(getApplicationContext(), "Downloading failed ! Try again later ", TastyToast.LENGTH_LONG,
                 TastyToast.ERROR);
+    }
+    public void showInfoToast(View view) {
+        makeText(getApplicationContext(), "Searching for username : 'Rahul' ", TastyToast.LENGTH_LONG,
+                TastyToast.INFO);
     }
 
 
@@ -78,7 +86,6 @@ public class TastyToast extends AppCompatActivity {
                 text.setText(msg);
 
                 warningToastView = (WarningToastView) layout.findViewById(R.id.warningView);
-                // Create a system to run the physics loop for a set of springs.
                 SpringSystem springSystem = SpringSystem.create();
                 final Spring spring = springSystem.createSpring();
                 spring.setCurrentValue(1.8);
@@ -88,8 +95,6 @@ public class TastyToast extends AppCompatActivity {
 
                     @Override
                     public void onSpringUpdate(Spring spring) {
-                        // You can observe the updates in the spring
-                        // state by asking its current value in onSpringUpdate.
                         float value = (float) spring.getCurrentValue();
                         float scale = (float) (0.9f - (value * 0.5f));
 
@@ -109,18 +114,14 @@ public class TastyToast extends AppCompatActivity {
                 });
 
                 t.start();
-
-
                 text.setBackgroundResource(R.drawable.warning_toast);
                 text.setTextColor(Color.parseColor("#FFFFFF"));
                 toast.setView(layout);
                 break;
             }
             case 3: {
-
                 View layout = inflater.inflate(R.layout.error_toast_layout,
                         (ViewGroup) findViewById(R.id.root_layout));
-
 
                 TextView text = (TextView) layout.findViewById(R.id.toastMessage);
                 text.setText(msg);
@@ -129,6 +130,24 @@ public class TastyToast extends AppCompatActivity {
                 text.setBackgroundResource(R.drawable.error_toast);
                 text.setTextColor(Color.parseColor("#FFFFFF"));
                 toast.setView(layout);
+                break;
+            }
+            case 4: {
+                View layout = inflater.inflate(R.layout.info_toast_layout,
+                        (ViewGroup) findViewById(R.id.root_layout));
+
+                TextView text = (TextView) layout.findViewById(R.id.toastMessage);
+                text.setText(msg);
+                infoToastView = (InfoToastView) layout.findViewById(R.id.infoView);
+                infoToastView.startAnim();
+                text.setBackgroundResource(R.drawable.info_toast);
+                text.setTextColor(Color.parseColor("#FFFFFF"));
+                toast.setView(layout);
+                break;
+            }
+            case 5: {
+
+
                 break;
             }
         }
