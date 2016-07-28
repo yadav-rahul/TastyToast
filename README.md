@@ -8,6 +8,10 @@ Make your native android toast look beautiful.
 ![gif](https://github.com/yadav-rahul/TastyToast/blob/master/static/info.gif)
 ![gif](https://github.com/yadav-rahul/TastyToast/blob/master/static/default.gif)
 
+## About
+
+Refer Here [Wiki](https://github.com/yadav-rahul/TastyToast/wiki)
+
 ## Contributing
 
 Please fork this repository and contribute back using
