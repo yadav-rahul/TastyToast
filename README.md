@@ -2,15 +2,42 @@
 Make your native android toast look beautiful.
 
 ## Preview
-![gif](https://github.com/yadav-rahul/TastyToast/blob/master/static/success.gif)
-![gif](https://github.com/yadav-rahul/TastyToast/blob/master/static/warning.gif)
-![gif](https://github.com/yadav-rahul/TastyToast/blob/master/static/error.gif)
-![gif](https://github.com/yadav-rahul/TastyToast/blob/master/static/info.gif)
-![gif](https://github.com/yadav-rahul/TastyToast/blob/master/static/default.gif)
+![gif](https://github.com/yadav-rahul/TastyToast/blob/lib/static/success.gif)
+![gif](https://github.com/yadav-rahul/TastyToast/blob/lib/static/warning.gif)
+![gif](https://github.com/yadav-rahul/TastyToast/blob/lib/static/error.gif)
+![gif](https://github.com/yadav-rahul/TastyToast/blob/lib/static/info.gif)
+![gif](https://github.com/yadav-rahul/TastyToast/blob/lib/static/default.gif)
 
 ## About
 
 Refer Here [Wiki](https://github.com/yadav-rahul/TastyToast/wiki)
+
+##Dependency
+
+Add it in your root build.gradle at the end of repositories:
+
+```
+allprojects {
+	repositories {
+		...
+		maven { url 'https://dl.bintray.com/yadav-rahul/maven/' }
+	}
+}
+```	
+and then add dependency
+
+```
+dependencies {
+	compile 'com.sdsmdg.tastytoast:tastytoast:0.0.1'
+}
+```
+
+##Usage
+
+###Java
+```
+TastyToast.makeText(getApplicationContext(), "Hello World !", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+```
 
 ## Contributing
 
