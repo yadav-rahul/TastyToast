@@ -139,7 +139,7 @@ public class ErrorToastView extends View {
                     isJustVisible = false;
                 }
 
-                invalidate();
+                postInvalidate();
             }
         });
 

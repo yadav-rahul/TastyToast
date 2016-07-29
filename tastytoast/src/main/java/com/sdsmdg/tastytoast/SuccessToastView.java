@@ -5,32 +5,38 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 
 /**
- * Created by rahul on 27/7/16.
+ * Created by rahul on 22/7/16.
  */
-public class DefaultToastView extends View {
+public class SuccessToastView extends View {
 
+
+    RectF rectF = new RectF();
     ValueAnimator valueAnimator;
     float mAnimatedValue = 0f;
-    private Paint mPaint, mSpikePaint;
+    private Paint mPaint;
     private float mWidth = 0f;
+    private float mEyeWidth = 0f;
     private float mPadding = 0f;
-    private float mSpikeLength;
+    private float endAngle = 0f;
+    private boolean isSmileLeft = false;
+    private boolean isSmileRight = false;
 
-
-    public DefaultToastView(Context context) {
+    public SuccessToastView(Context context) {
         super(context);
     }
 
-    public DefaultToastView(Context context, AttributeSet attrs) {
+
+    public SuccessToastView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public DefaultToastView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public SuccessToastView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initPaint();
     }
@@ -40,48 +46,42 @@ public class DefaultToastView extends View {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
         mWidth = getMeasuredWidth();
-        mPadding = dip2px(5);
+        mPadding = dip2px(10);
+        mEyeWidth = dip2px(3);
     }
 
     private void initPaint() {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setColor(Color.parseColor("#222222"));
+        mPaint.setColor(Color.parseColor("#5cb85c"));
         mPaint.setStrokeWidth(dip2px(2));
 
-        mSpikePaint = new Paint();
-        mSpikePaint.setAntiAlias(true);
-        mSpikePaint.setStyle(Paint.Style.STROKE);
-        mSpikePaint.setColor(Color.parseColor("#222222"));
-        mSpikePaint.setStrokeWidth(dip2px(4));
-
-        mSpikeLength = dip2px(4);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         initPaint();
+        rectF = new RectF(mPadding, mPadding, mWidth - mPadding, mWidth - mPadding);
+        mPaint.setStyle(Paint.Style.STROKE);
 
-        canvas.save();
+        canvas.drawArc(rectF, 180, endAngle, false, mPaint);
 
-        canvas.drawCircle(mWidth / 2, mWidth / 2, mWidth / 4, mPaint);
+        mPaint.setStyle(Paint.Style.FILL);
+        if (isSmileLeft) {
+            canvas.drawCircle(mPadding + mEyeWidth + mEyeWidth / 2, mWidth / 3, mEyeWidth, mPaint);
 
-        for (int i = 0; i < 360; i += 40) {
-
-            int angle = (int) (mAnimatedValue * 40 + i);
-            float initialX = (float) ((mWidth / 4) * Math.cos(angle * Math.PI / 180));
-            float initialY = (float) ((mWidth / 4) * Math.sin(angle * Math.PI / 180));
-            float finalX = (float) ((mWidth / 4 + mSpikeLength) * Math.cos(angle * Math.PI / 180));
-            float finalY = (float) ((mWidth / 4 + mSpikeLength) * Math.sin(angle * Math.PI / 180));
-            canvas.drawLine(mWidth / 2 - initialX, mWidth / 2 - initialY, mWidth / 2 - finalX,
-                    mWidth / 2 - finalY, mSpikePaint);
         }
-
-        canvas.restore();
+        if (isSmileRight) {
+            canvas.drawCircle(mWidth - mPadding - mEyeWidth - mEyeWidth / 2, mWidth / 3, mEyeWidth, mPaint);
+        }
     }
 
+    public int dip2px(float dpValue) {
+        final float scale = getContext().getResources().getDisplayMetrics().density;
+        return (int) (dpValue * scale + 0.5f);
+    }
 
     public void startAnim() {
         stopAnim();
@@ -91,9 +91,10 @@ public class DefaultToastView extends View {
     public void stopAnim() {
         if (valueAnimator != null) {
             clearAnimation();
-
+            isSmileLeft = false;
+            isSmileRight = false;
+            mAnimatedValue = 0f;
             valueAnimator.end();
-            invalidate();
         }
     }
 
@@ -101,14 +102,26 @@ public class DefaultToastView extends View {
         valueAnimator = ValueAnimator.ofFloat(startF, endF);
         valueAnimator.setDuration(time);
         valueAnimator.setInterpolator(new LinearInterpolator());
-        valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
-        valueAnimator.setRepeatMode(ValueAnimator.RESTART);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
 
                 mAnimatedValue = (float) valueAnimator.getAnimatedValue();
-                invalidate();
+                if (mAnimatedValue < 0.5) {
+                    isSmileLeft = false;
+                    isSmileRight = false;
+                    endAngle = -360 * (mAnimatedValue);
+                } else if (mAnimatedValue > 0.55 && mAnimatedValue < 0.7) {
+                    endAngle = -180;
+                    isSmileLeft = true;
+                    isSmileRight = false;
+                } else {
+                    endAngle = -180;
+                    isSmileLeft = true;
+                    isSmileRight = true;
+                }
+
+                postInvalidate();
             }
         });
 
@@ -117,10 +130,5 @@ public class DefaultToastView extends View {
 
         }
         return valueAnimator;
-    }
-
-    public int dip2px(float dpValue) {
-        final float scale = getContext().getResources().getDisplayMetrics().density;
-        return (int) (dpValue * scale);
     }
 }

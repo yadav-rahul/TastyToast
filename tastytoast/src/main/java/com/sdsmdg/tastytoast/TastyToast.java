@@ -2,12 +2,8 @@ package com.sdsmdg.tastytoast;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,65 +12,34 @@ import com.facebook.rebound.Spring;
 import com.facebook.rebound.SpringConfig;
 import com.facebook.rebound.SpringSystem;
 
-public class TastyToast extends AppCompatActivity {
-
+/**
+ * Created by rahul on 28/7/16.
+ */
+public class TastyToast {
     public static final int LENGTH_SHORT = 0;
     public static final int LENGTH_LONG = 1;
+
+
     public static final int SUCCESS = 1;
     public static final int WARNING = 2;
     public static final int ERROR = 3;
     public static final int INFO = 4;
     public static final int DEFAULT = 5;
 
-    SuccessToastView successToastView;
-    WarningToastView warningToastView;
-    ErrorToastView errorToastView;
-    InfoToastView infoToastView;
-    DefaultToastView defaultToastView;
+    static SuccessToastView successToastView;
+    static WarningToastView warningToastView;
+    static ErrorToastView errorToastView;
+    static InfoToastView infoToastView;
+    static DefaultToastView defaultToastView;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    public static void makeText(Context context, String msg, int length, int type) {
 
-        setContentView(R.layout.activity_tasty_toast);
-    }
-
-    public void showSuccessToast(View view) {
-        makeText(getApplicationContext(), "Download Successful !", TastyToast.LENGTH_LONG,
-                TastyToast.SUCCESS);
-    }
-
-    public void showWarningToast(View view) {
-        makeText(getApplicationContext(), "Are you sure ?", TastyToast.LENGTH_LONG,
-                TastyToast.WARNING);
-    }
-
-    public void showErrorToast(View view) {
-        makeText(getApplicationContext(), "Downloading failed ! Try again later ", TastyToast.LENGTH_LONG,
-                TastyToast.ERROR);
-    }
-    public void showInfoToast(View view) {
-        makeText(getApplicationContext(), "Searching for username : 'Rahul' ", TastyToast.LENGTH_LONG,
-                TastyToast.INFO);
-    }
-
-    public void showDefaultToast(View view) {
-        makeText(getApplicationContext(), "This is Default Toast", TastyToast.LENGTH_LONG,
-                TastyToast.DEFAULT);
-    }
-
-
-
-    public void makeText(Context context, String msg, int length, int type) {
-        LayoutInflater inflater = getLayoutInflater();
         Toast toast = new Toast(context);
+
 
         switch (type) {
             case 1: {
-                View layout = inflater.inflate(R.layout.success_toast_layout,
-                        (ViewGroup) findViewById(R.id.root_layout));
-
+                View layout = LayoutInflater.from(context).inflate(R.layout.success_toast_layout, null, false);
                 TextView text = (TextView) layout.findViewById(R.id.toastMessage);
                 text.setText(msg);
                 successToastView = (SuccessToastView) layout.findViewById(R.id.successView);
@@ -85,8 +50,7 @@ public class TastyToast extends AppCompatActivity {
                 break;
             }
             case 2: {
-                View layout = inflater.inflate(R.layout.warning_toast_layout,
-                        (ViewGroup) findViewById(R.id.root_layout));
+                View layout = LayoutInflater.from(context).inflate(R.layout.warning_toast_layout, null, false);
 
                 TextView text = (TextView) layout.findViewById(R.id.toastMessage);
                 text.setText(msg);
@@ -126,8 +90,7 @@ public class TastyToast extends AppCompatActivity {
                 break;
             }
             case 3: {
-                View layout = inflater.inflate(R.layout.error_toast_layout,
-                        (ViewGroup) findViewById(R.id.root_layout));
+                View layout = LayoutInflater.from(context).inflate(R.layout.error_toast_layout, null, false);
 
                 TextView text = (TextView) layout.findViewById(R.id.toastMessage);
                 text.setText(msg);
@@ -139,8 +102,7 @@ public class TastyToast extends AppCompatActivity {
                 break;
             }
             case 4: {
-                View layout = inflater.inflate(R.layout.info_toast_layout,
-                        (ViewGroup) findViewById(R.id.root_layout));
+                View layout = LayoutInflater.from(context).inflate(R.layout.info_toast_layout, null, false);
 
                 TextView text = (TextView) layout.findViewById(R.id.toastMessage);
                 text.setText(msg);
@@ -152,8 +114,7 @@ public class TastyToast extends AppCompatActivity {
                 break;
             }
             case 5: {
-                View layout = inflater.inflate(R.layout.default_toast_layout,
-                        (ViewGroup) findViewById(R.id.root_layout));
+                View layout = LayoutInflater.from(context).inflate(R.layout.default_toast_layout, null, false);
 
                 TextView text = (TextView) layout.findViewById(R.id.toastMessage);
                 text.setText(msg);
@@ -169,4 +130,5 @@ public class TastyToast extends AppCompatActivity {
         toast.setDuration(length);
         toast.show();
     }
+
 }

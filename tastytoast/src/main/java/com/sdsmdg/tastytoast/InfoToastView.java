@@ -153,7 +153,7 @@ public class InfoToastView extends View {
                     isEyeRight = false;
                 }
 
-                invalidate();
+                postInvalidate();
             }
         });
 
