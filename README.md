@@ -14,17 +14,8 @@ Refer Here [Wiki](https://github.com/yadav-rahul/TastyToast/wiki)
 
 ##Dependency
 
-Add it in your root build.gradle at the end of repositories:
 
-```
-allprojects {
-	repositories {
-		...
-		maven { url 'https://dl.bintray.com/yadav-rahul/maven/' }
-	}
-}
-```	
-and then add dependency
+Add dependency in your app module
 
 ```
 dependencies {
@@ -38,6 +29,7 @@ dependencies {
 ```
 TastyToast.makeText(getApplicationContext(), "Hello World !", TastyToast.LENGTH_LONG, TastyToast.WARNING);
 ```
+Last parameter here is the type of toast you want to show.
 
 ## Contributing
 
