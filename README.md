@@ -1,4 +1,10 @@
 # TastyToast
+
+[![platform](https://img.shields.io/badge/platform-Android-yellow.svg)](https://www.android.com)
+[![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=15)
+[![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=flat-square)](https://www.apache.org/licenses/LICENSE-2.0.html)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-TastyToast-red.svg?style=flat)](http://android-arsenal.com/details/1/4039)
+
 Make your native android toast look beautiful.
 
 ## Preview
@@ -12,8 +18,11 @@ Make your native android toast look beautiful.
 
 Refer Here [Wiki](https://github.com/yadav-rahul/TastyToast/wiki)
 
-##Dependency
+Grab the above demo app from here :
 
+[![Get it on Google Play](https://play.google.com/intl/en_us/badges/images/badge_new.png)]()
+
+##Dependency
 
 Add dependency in your app module
 
