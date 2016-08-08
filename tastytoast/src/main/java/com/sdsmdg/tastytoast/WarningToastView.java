@@ -23,6 +23,7 @@ public class WarningToastView extends View {
     private float mHeight = 0f;
     private float mStrokeWidth = 0f;
     private float mPadding = 0f;
+    private float mPaddingBottom = 0f;
     private float endAngle = 0f;
 
     public WarningToastView(Context context) {
@@ -46,6 +47,7 @@ public class WarningToastView extends View {
         mHeight = getMeasuredHeight();
         mWidth = getMeasuredWidth();
         mPadding = convertDpToPixel(2);
+        mPaddingBottom = mPadding * 2;
         mStrokeWidth = convertDpToPixel(2);
     }
 
@@ -61,7 +63,7 @@ public class WarningToastView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         initPaint();
-        rectFOne = new RectF(mPadding, mPadding, mWidth - mPadding, mWidth - mPadding);
+        rectFOne = new RectF(mPadding, 0, mWidth - mPadding, mWidth -  mPaddingBottom);
 
         rectFTwo = new RectF((float) (1.5 * mPadding), convertDpToPixel(6) + mPadding +
                 mHeight / 3, mPadding + convertDpToPixel(9), convertDpToPixel(6) + mPadding + mHeight / 2);
