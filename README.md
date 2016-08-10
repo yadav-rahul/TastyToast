@@ -28,7 +28,7 @@ Add dependency in your app module
 
 ```
 dependencies {
-	compile 'com.sdsmdg.tastytoast:tastytoast:0.0.2'
+	compile 'com.sdsmdg.tastytoast:tastytoast:0.0.3'
 }
 ```
 
