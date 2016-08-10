@@ -15,7 +15,6 @@ import android.view.animation.LinearInterpolator;
  */
 public class ErrorToastView extends View {
 
-
     RectF rectF = new RectF();
     RectF leftEyeRectF = new RectF();
     RectF rightEyeRectF = new RectF();
@@ -34,20 +33,19 @@ public class ErrorToastView extends View {
         super(context);
     }
 
-
     public ErrorToastView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
     public ErrorToastView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initPaint();
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
+        initPaint();
+        initRect();
         mWidth = getMeasuredWidth();
         mPadding = dip2px(10);
         mEyeWidth = dip2px(3);
@@ -59,18 +57,20 @@ public class ErrorToastView extends View {
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setColor(Color.parseColor("#d9534f"));
         mPaint.setStrokeWidth(dip2px(2));
+    }
 
+    private void initRect() {
+        rectF = new RectF(mPadding / 2, ((mWidth) / 2), mWidth - (mPadding / 2), ((3 * mWidth / 2)));
+        leftEyeRectF = new RectF(mPadding + mEyeWidth - mEyeWidth, mWidth / 3 -
+                mEyeWidth, mPadding + mEyeWidth + mEyeWidth, mWidth / 3 + mEyeWidth);
+        rightEyeRectF = new RectF(mWidth - mPadding - 5 * mEyeWidth / 2, mWidth / 3 -
+                mEyeWidth, mWidth - mPadding - mEyeWidth / 2, mWidth / 3 + mEyeWidth);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        initPaint();
-        rectF = new RectF(mPadding / 2, ((mWidth)/2 ), mWidth - (mPadding / 2), ((3 * mWidth/2)));
-
         mPaint.setStyle(Paint.Style.STROKE);
-
-
         canvas.drawArc(rectF, 210, endAngle, false, mPaint);
 
         mPaint.setStyle(Paint.Style.FILL);
@@ -79,19 +79,9 @@ public class ErrorToastView extends View {
             canvas.drawCircle(mWidth - mPadding - mEyeWidth - mEyeWidth / 2, mWidth / 3, mEyeWidth, mPaint);
         }
         if (isSad) {
-            leftEyeRectF = new RectF(mPadding + mEyeWidth - mEyeWidth, mWidth / 3 -
-                    mEyeWidth, mPadding + mEyeWidth + mEyeWidth, mWidth / 3 +
-                    mEyeWidth);
             canvas.drawArc(leftEyeRectF, 160, -220, false, mPaint);
-
-            rightEyeRectF = new RectF(mWidth - mPadding - 5 * mEyeWidth / 2, mWidth / 3 -
-                    mEyeWidth, mWidth - mPadding - mEyeWidth / 2, mWidth / 3 +
-                    mEyeWidth);
-
             canvas.drawArc(rightEyeRectF, 20, 220, false, mPaint);
-
         }
-
     }
 
     public int dip2px(float dpValue) {

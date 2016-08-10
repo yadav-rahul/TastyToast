@@ -15,7 +15,6 @@ import android.view.animation.LinearInterpolator;
  */
 public class SuccessToastView extends View {
 
-
     RectF rectF = new RectF();
     ValueAnimator valueAnimator;
     float mAnimatedValue = 0f;
@@ -31,20 +30,19 @@ public class SuccessToastView extends View {
         super(context);
     }
 
-
     public SuccessToastView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
     public SuccessToastView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initPaint();
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
+        initPaint();
+        initRect();
         mWidth = getMeasuredWidth();
         mPadding = dip2px(10);
         mEyeWidth = dip2px(3);
@@ -56,22 +54,21 @@ public class SuccessToastView extends View {
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setColor(Color.parseColor("#5cb85c"));
         mPaint.setStrokeWidth(dip2px(2));
+    }
 
+    private void initRect() {
+        rectF = new RectF(mPadding, mPadding, mWidth - mPadding, mWidth - mPadding);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        initPaint();
-        rectF = new RectF(mPadding, mPadding, mWidth - mPadding, mWidth - mPadding);
         mPaint.setStyle(Paint.Style.STROKE);
-
         canvas.drawArc(rectF, 180, endAngle, false, mPaint);
 
         mPaint.setStyle(Paint.Style.FILL);
         if (isSmileLeft) {
             canvas.drawCircle(mPadding + mEyeWidth + mEyeWidth / 2, mWidth / 3, mEyeWidth, mPaint);
-
         }
         if (isSmileRight) {
             canvas.drawCircle(mWidth - mPadding - mEyeWidth - mEyeWidth / 2, mWidth / 3, mEyeWidth, mPaint);

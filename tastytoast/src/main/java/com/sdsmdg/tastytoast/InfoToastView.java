@@ -15,7 +15,6 @@ import android.view.animation.LinearInterpolator;
  */
 public class InfoToastView extends View {
 
-
     RectF rectF = new RectF();
     ValueAnimator valueAnimator;
     float mAnimatedValue = 0f;
@@ -40,13 +39,13 @@ public class InfoToastView extends View {
 
     public InfoToastView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initPaint();
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
+        initPaint();
+        initRect();
         mWidth = getMeasuredWidth();
         mPadding = dip2px(10);
         mEyeWidth = dip2px(3);
@@ -62,32 +61,29 @@ public class InfoToastView extends View {
 
     }
 
+    private void initRect() {
+        rectF = new RectF(mPadding, mPadding, mWidth - mPadding, mWidth - mPadding);
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        initPaint();
-        rectF = new RectF(mPadding, mPadding, mWidth - mPadding, mWidth - mPadding);
         mPaint.setStyle(Paint.Style.STROKE);
-
         canvas.drawLine(mPadding, mWidth - 3 * mPadding / 2, endPoint, mWidth - 3 * mPadding / 2, mPaint);
-
         mPaint.setStyle(Paint.Style.FILL);
 
         if (isEyeLeft) {
             canvas.drawCircle(mPadding + mEyeWidth, mWidth / 3, mEyeWidth, mPaint);
             canvas.drawCircle(mWidth - mPadding - 2 * mEyeWidth, mWidth / 3, mEyeWidth, mPaint);
         }
-
         if (isEyeMiddle) {
             canvas.drawCircle(mPadding + (3 * mEyeWidth / 2), mWidth / 3, mEyeWidth, mPaint);
             canvas.drawCircle(mWidth - mPadding - (5 * mEyeWidth / 2), mWidth / 3, mEyeWidth, mPaint);
         }
-
         if (isEyeRight) {
             canvas.drawCircle(mPadding + 2 * mEyeWidth, mWidth / 3, mEyeWidth, mPaint);
             canvas.drawCircle(mWidth - mPadding - mEyeWidth, mWidth / 3, mEyeWidth, mPaint);
         }
-
     }
 
     public int dip2px(float dpValue) {

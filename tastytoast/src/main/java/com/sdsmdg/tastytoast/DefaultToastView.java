@@ -32,13 +32,12 @@ public class DefaultToastView extends View {
 
     public DefaultToastView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initPaint();
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
+        initPaint();
         mWidth = getMeasuredWidth();
         mPadding = dip2px(5);
     }
@@ -62,10 +61,7 @@ public class DefaultToastView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        initPaint();
-
         canvas.save();
-
         canvas.drawCircle(mWidth / 2, mWidth / 2, mWidth / 4, mPaint);
 
         for (int i = 0; i < 360; i += 40) {
@@ -78,7 +74,6 @@ public class DefaultToastView extends View {
             canvas.drawLine(mWidth / 2 - initialX, mWidth / 2 - initialY, mWidth / 2 - finalX,
                     mWidth / 2 - finalY, mSpikePaint);
         }
-
         canvas.restore();
     }
 

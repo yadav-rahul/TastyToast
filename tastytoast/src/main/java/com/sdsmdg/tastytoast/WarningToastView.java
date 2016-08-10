@@ -14,7 +14,6 @@ import android.view.View;
  */
 public class WarningToastView extends View {
 
-
     RectF rectFOne = new RectF();
     RectF rectFTwo = new RectF();
     RectF rectFThree = new RectF();
@@ -37,13 +36,13 @@ public class WarningToastView extends View {
 
     public WarningToastView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initPaint();
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
+        initPaint();
+        initRect();
         mHeight = getMeasuredHeight();
         mWidth = getMeasuredWidth();
         mPadding = convertDpToPixel(2);
@@ -59,22 +58,19 @@ public class WarningToastView extends View {
         mPaint.setStrokeWidth(mStrokeWidth);
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        initPaint();
-        rectFOne = new RectF(mPadding, 0, mWidth - mPadding, mWidth -  mPaddingBottom);
-
+    private void initRect() {
+        rectFOne = new RectF(mPadding, 0, mWidth - mPadding, mWidth - mPaddingBottom);
         rectFTwo = new RectF((float) (1.5 * mPadding), convertDpToPixel(6) + mPadding +
                 mHeight / 3, mPadding + convertDpToPixel(9), convertDpToPixel(6) + mPadding + mHeight / 2);
         rectFThree = new RectF(mPadding + convertDpToPixel(9), convertDpToPixel(3) + mPadding +
                 mHeight / 3, mPadding + convertDpToPixel(18), convertDpToPixel(3) + mPadding + mHeight / 2);
+    }
 
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
         mPaint.setStyle(Paint.Style.STROKE);
-
         canvas.drawArc(rectFOne, 170, -144, false, mPaint);
-        // If running different on different devices then try changing Mheight and Mwidth with changeing to pixels.
-
         canvas.drawLine(mWidth - convertDpToPixel(3) - mStrokeWidth, (float) (mPadding +
                         mHeight / 6), mWidth - convertDpToPixel(3) - mStrokeWidth,
                 mHeight - convertDpToPixel(2) - mHeight / 4, mPaint);
@@ -94,7 +90,6 @@ public class WarningToastView extends View {
         canvas.drawArc(rectFTwo, 170, 180, false, mPaint);
         canvas.drawArc(rectFThree, 175, -150, false, mPaint);
     }
-
 
     public float convertDpToPixel(float dp) {
         DisplayMetrics metrics = getContext().getResources().getDisplayMetrics();

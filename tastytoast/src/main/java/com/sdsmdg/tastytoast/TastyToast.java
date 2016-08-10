@@ -126,7 +126,6 @@ public class TastyToast {
                 break;
             }
         }
-
         toast.setDuration(length);
         toast.show();
     }
