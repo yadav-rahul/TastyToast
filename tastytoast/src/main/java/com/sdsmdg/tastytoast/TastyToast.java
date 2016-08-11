@@ -32,6 +32,15 @@ public class TastyToast {
     static InfoToastView infoToastView;
     static DefaultToastView defaultToastView;
 
+    /**
+     *  Show the success toast view for a short period
+     *  @param context The context of the Activity
+     *  @param msg The text to be displayed on the Toast
+     */
+    public static void show(Context context, String msg) {
+      this.makeText(context, msg, LENGTH_SHORT, SUCCESS);
+    }
+
     public static void makeText(Context context, String msg, int length, int type) {
 
         Toast toast = new Toast(context);
