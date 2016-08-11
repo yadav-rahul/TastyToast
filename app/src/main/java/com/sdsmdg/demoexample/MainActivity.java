@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showSuccessToast(View view) {
-        TastyToast.show(getApplicationContext(), "Download Successful !");
+        TastyToast.makeText(getApplicationContext(), "Download Successful !", TastyToast.LENGTH_LONG, TastyToast.SUCCESS);
     }
 
     public void showWarningToast(View view) {
