@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.sdsmdg.demoexample"
-        minSdkVersion 15
+        minSdkVersion 9
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
