@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.os.CountDownTimer;
 
 import com.facebook.rebound.SimpleSpringListener;
 import com.facebook.rebound.Spring;
@@ -42,13 +41,6 @@ public class TastyToast {
       this.makeText(context, msg, LENGTH_SHORT, SUCCESS);
     }
 
-    /**
-     *  Show a toast view
-     *  @param context The context of the Activity
-     *  @param msg The text to be displayed on the Toast
-     *  @param length The duration of the Toast, 0 for short, 1 for long, otherwise number of milliseconds
-     *  @param type The type of the Toast
-     */
     public static void makeText(Context context, String msg, int length, int type) {
 
         Toast toast = new Toast(context);
@@ -144,24 +136,8 @@ public class TastyToast {
             }
         }
 
-        if (length == 1 || length == 0) {
-          toast.setDuration(length);
-          toast.show();
-        }
-        else {
-          toast.setDuration(1);
-          CountDownTimer toastCountDown;
-          toastCountDown = new CountDownTimer(length, 1000) {
-            public void onTick(long millisUntilFinished) {
-              toast.show();
-            }
-            public void onFinish() {
-              toast.cancel();
-            }
-          };
-          toast.show();
-          toastCountDown.start();
-        }
+        toast.setDuration(length);
+        toast.show();
     }
 
 }
