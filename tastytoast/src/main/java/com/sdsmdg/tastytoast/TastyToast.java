@@ -38,7 +38,7 @@ public class TastyToast {
 
 
         switch (type) {
-            case 1: {
+            case SUCCESS: {
                 View layout = LayoutInflater.from(context).inflate(R.layout.success_toast_layout, null, false);
                 TextView text = (TextView) layout.findViewById(R.id.toastMessage);
                 text.setText(msg);
@@ -49,7 +49,7 @@ public class TastyToast {
                 toast.setView(layout);
                 break;
             }
-            case 2: {
+            case WARNING: {
                 View layout = LayoutInflater.from(context).inflate(R.layout.warning_toast_layout, null, false);
 
                 TextView text = (TextView) layout.findViewById(R.id.toastMessage);
@@ -89,7 +89,7 @@ public class TastyToast {
                 toast.setView(layout);
                 break;
             }
-            case 3: {
+            case ERROR: {
                 View layout = LayoutInflater.from(context).inflate(R.layout.error_toast_layout, null, false);
 
                 TextView text = (TextView) layout.findViewById(R.id.toastMessage);
@@ -101,7 +101,7 @@ public class TastyToast {
                 toast.setView(layout);
                 break;
             }
-            case 4: {
+            case INFO: {
                 View layout = LayoutInflater.from(context).inflate(R.layout.info_toast_layout, null, false);
 
                 TextView text = (TextView) layout.findViewById(R.id.toastMessage);
@@ -113,7 +113,7 @@ public class TastyToast {
                 toast.setView(layout);
                 break;
             }
-            case 5: {
+            case DEFULT: {
                 View layout = LayoutInflater.from(context).inflate(R.layout.default_toast_layout, null, false);
 
                 TextView text = (TextView) layout.findViewById(R.id.toastMessage);
