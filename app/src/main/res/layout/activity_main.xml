@@ -71,6 +71,16 @@
             android:layout_centerHorizontal="true"
             android:onClick="showDefaultToast"
             android:text="Default" />
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/button6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button"
+            android:layout_centerHorizontal="true"
+            android:onClick="showConfusingToast"
+            android:text="Confusing" />
     </LinearLayout>
 
 </LinearLayout>
