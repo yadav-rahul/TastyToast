@@ -25,12 +25,14 @@ public class TastyToast {
     public static final int ERROR = 3;
     public static final int INFO = 4;
     public static final int DEFAULT = 5;
+    public static final int CONFUSING = 6;
 
     static SuccessToastView successToastView;
     static WarningToastView warningToastView;
     static ErrorToastView errorToastView;
     static InfoToastView infoToastView;
     static DefaultToastView defaultToastView;
+    static ConfusingToastView confusingToastView;
 
     public static void makeText(Context context, String msg, int length, int type) {
 
@@ -121,6 +123,18 @@ public class TastyToast {
                 defaultToastView = (DefaultToastView) layout.findViewById(R.id.defaultView);
                 defaultToastView.startAnim();
                 text.setBackgroundResource(R.drawable.default_toast);
+                text.setTextColor(Color.parseColor("#FFFFFF"));
+                toast.setView(layout);
+                break;
+            }
+            case 6: {
+                View layout = LayoutInflater.from(context).inflate(R.layout.confusing_toast_layout, null, false);
+
+                TextView text = (TextView) layout.findViewById(R.id.toastMessage);
+                text.setText(msg);
+                confusingToastView = (ConfusingToastView) layout.findViewById(R.id.confusingView);
+                confusingToastView.startAnim();
+                text.setBackgroundResource(R.drawable.confusing_toast);
                 text.setTextColor(Color.parseColor("#FFFFFF"));
                 toast.setView(layout);
                 break;
