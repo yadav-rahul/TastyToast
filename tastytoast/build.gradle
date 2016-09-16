@@ -7,7 +7,7 @@ android {
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 24
-        versionCode 4
+        versionCode 5
         versionName "1.0"
     }
     buildTypes {
@@ -28,7 +28,7 @@ dependencies {
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
-version = "0.0.4"
+version = "0.0.5"
 def siteUrl = 'https://github.com/yadav-rahul/TastyToast'    // project homepage
 def gitUrl = 'https://github.com/yadav-rahul/TastyToast.git' // project git
 group = "com.sdsmdg.tastytoast"
