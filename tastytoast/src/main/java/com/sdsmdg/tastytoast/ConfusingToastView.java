@@ -14,6 +14,7 @@ import android.view.animation.LinearInterpolator;
 
 /**
  * Created by Anas Altair on 8/31/2016.
+ * Modified by rahul on 16/09/2016
  */
 public class ConfusingToastView extends View {
 
@@ -54,8 +55,8 @@ public class ConfusingToastView extends View {
 
     private void initPath() {
         Path mPath = new Path();
-        RectF rectF = new RectF(mWidth/2f - dip2px(1.5f), mHeight/2f - dip2px(1.5f)
-                , mWidth/2f + dip2px(1.5f), mHeight/2f + dip2px(1.5f));
+        RectF rectF = new RectF(mWidth / 2f - dip2px(1.5f), mHeight / 2f - dip2px(1.5f)
+                , mWidth / 2f + dip2px(1.5f), mHeight / 2f + dip2px(1.5f));
         mPath.addArc(rectF, 180f, 180f);
         rectF.set(rectF.left - dip2px(3), rectF.top - dip2px(1.5f), rectF.right, rectF.bottom + dip2px(1.5f));
         mPath.addArc(rectF, 0f, 180f);
@@ -64,7 +65,7 @@ public class ConfusingToastView extends View {
         rectF.set(rectF.left - dip2px(3), rectF.top - dip2px(1.5f), rectF.right, rectF.bottom + dip2px(1.5f));
         mPath.addArc(rectF, 0f, 180f);
 
-        eye = Bitmap.createBitmap((int)mWidth, (int)mHeight, Bitmap.Config.ARGB_8888);
+        eye = Bitmap.createBitmap((int) mWidth, (int) mHeight, Bitmap.Config.ARGB_8888);
         Canvas c = new Canvas(eye);
         mPaint.setStrokeWidth(dip2px(1.7f));
         c.drawPath(mPath, mPaint);
@@ -75,21 +76,21 @@ public class ConfusingToastView extends View {
         super.onDraw(canvas);
 
         canvas.save();
-        canvas.rotate(angle, mWidth/4f, mHeight*2f/5f);
-        canvas.drawBitmap(eye, mWidth/4f - (eye.getWidth()/2f), mHeight*2f/5f - (eye.getHeight()/2f), mPaint);
+        canvas.rotate(angle, mWidth / 4f, mHeight * 2f / 5f);
+        canvas.drawBitmap(eye, mWidth / 4f - (eye.getWidth() / 2f), mHeight * 2f / 5f - (eye.getHeight() / 2f), mPaint);
         canvas.restore();
         canvas.save();
-        canvas.rotate(angle, mWidth*3f/4f, mHeight*2f/5f);
-        canvas.drawBitmap(eye, mWidth*3f/4f - (eye.getWidth()/2f), mHeight*2f/5f - (eye.getHeight()/2f), mPaint);
+        canvas.rotate(angle, mWidth * 3f / 4f, mHeight * 2f / 5f);
+        canvas.drawBitmap(eye, mWidth * 3f / 4f - (eye.getWidth() / 2f), mHeight * 2f / 5f - (eye.getHeight() / 2f), mPaint);
         canvas.restore();
 
         mPaint.setStrokeWidth(dip2px(2f));
-        canvas.drawLine(mWidth/4f, mHeight*3f/4f, mWidth*3f/4f, mHeight*3f/4f, mPaint);
+        canvas.drawLine(mWidth / 4f, mHeight * 3f / 4f, mWidth * 3f / 4f, mHeight * 3f / 4f, mPaint);
     }
 
     public float dip2px(float dpValue) {
         final float scale = getContext().getResources().getDisplayMetrics().density;
-        return dpValue * scale ;
+        return dpValue * scale;
     }
 
     public void startAnim() {
@@ -116,7 +117,7 @@ public class ConfusingToastView extends View {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
 
-                angle+=4;
+                angle += 4;
                 postInvalidate();
             }
         });

@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void showConfusingToast(View view) {
-        TastyToast.makeText(getApplicationContext(), "I don't Know !!!", TastyToast.LENGTH_LONG,
+        TastyToast.makeText(getApplicationContext(), "I don't Know !", TastyToast.LENGTH_LONG,
                 TastyToast.CONFUSING);
     }
 }
