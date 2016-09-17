@@ -13,6 +13,7 @@ Make your native android toast look beautiful.
 ![gif](https://github.com/yadav-rahul/TastyToast/blob/lib/static/error.gif)
 ![gif](https://github.com/yadav-rahul/TastyToast/blob/lib/static/info.gif)
 ![gif](https://github.com/yadav-rahul/TastyToast/blob/lib/static/default.gif)
+![gif](https://github.com/yadav-rahul/TastyToast/blob/lib/static/confusion.gif)
 
 ## About
 
@@ -28,7 +29,7 @@ Add dependency in your app module
 
 ```
 dependencies {
-	compile 'com.sdsmdg.tastytoast:tastytoast:0.0.5'
+	compile 'com.sdsmdg.tastytoast:tastytoast:0.1.0'
 }
 ```
 
