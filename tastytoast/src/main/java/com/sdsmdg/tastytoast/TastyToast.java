@@ -34,7 +34,7 @@ public class TastyToast {
     static DefaultToastView defaultToastView;
     static ConfusingToastView confusingToastView;
 
-    public static void makeText(Context context, String msg, int length, int type) {
+    public static Toast makeText(Context context, String msg, int length, int type) {
 
         Toast toast = new Toast(context);
 
@@ -142,6 +142,7 @@ public class TastyToast {
         }
         toast.setDuration(length);
         toast.show();
+        return toast;
     }
 
 }
