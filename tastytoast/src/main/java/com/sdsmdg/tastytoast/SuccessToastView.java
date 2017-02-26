@@ -13,7 +13,7 @@ import android.view.animation.LinearInterpolator;
 /**
  * Created by rahul on 22/7/16.
  */
-public class SuccessToastView extends View {
+public class SuccessToastView extends ToastView {
 
     RectF rectF = new RectF();
     ValueAnimator valueAnimator;
@@ -73,11 +73,6 @@ public class SuccessToastView extends View {
         if (isSmileRight) {
             canvas.drawCircle(mWidth - mPadding - mEyeWidth - mEyeWidth / 2, mWidth / 3, mEyeWidth, mPaint);
         }
-    }
-
-    public int dip2px(float dpValue) {
-        final float scale = getContext().getResources().getDisplayMetrics().density;
-        return (int) (dpValue * scale + 0.5f);
     }
 
     public void startAnim() {

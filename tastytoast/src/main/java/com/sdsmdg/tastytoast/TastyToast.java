@@ -38,7 +38,6 @@ public class TastyToast {
 
         Toast toast = new Toast(context);
 
-
         switch (type) {
             case 1: {
                 View layout = LayoutInflater.from(context).inflate(R.layout.success_toast_layout, null, false);

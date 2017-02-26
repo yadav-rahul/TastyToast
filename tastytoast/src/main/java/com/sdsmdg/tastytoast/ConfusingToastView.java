@@ -16,7 +16,7 @@ import android.view.animation.LinearInterpolator;
  * Created by Anas Altair on 8/31/2016.
  * Modified by rahul on 16/09/2016
  */
-public class ConfusingToastView extends View {
+public class ConfusingToastView extends ToastView {
 
     Bitmap eye;
     ValueAnimator valueAnimator;
@@ -86,11 +86,6 @@ public class ConfusingToastView extends View {
 
         mPaint.setStrokeWidth(dip2px(2f));
         canvas.drawLine(mWidth / 4f, mHeight * 3f / 4f, mWidth * 3f / 4f, mHeight * 3f / 4f, mPaint);
-    }
-
-    public float dip2px(float dpValue) {
-        final float scale = getContext().getResources().getDisplayMetrics().density;
-        return dpValue * scale;
     }
 
     public void startAnim() {
