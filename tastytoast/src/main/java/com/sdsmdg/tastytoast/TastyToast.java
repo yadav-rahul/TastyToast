@@ -15,7 +15,9 @@ import com.facebook.rebound.SpringSystem;
 /**
  * Created by rahul on 28/7/16.
  */
-public class TastyToast {
+public class TastyToast extends Toast {
+    public ToastView view;
+
     public static final int LENGTH_SHORT = 0;
     public static final int LENGTH_LONG = 1;
 
@@ -27,12 +29,11 @@ public class TastyToast {
     public static final int DEFAULT = 5;
     public static final int CONFUSING = 6;
 
-    static SuccessToastView successToastView;
-    static WarningToastView warningToastView;
-    static ErrorToastView errorToastView;
-    static InfoToastView infoToastView;
-    static DefaultToastView defaultToastView;
-    static ConfusingToastView confusingToastView;
+    private static ToastView toastView;
+
+    public TastyToast(Context context) {
+        super(context);
+    }
 
     public static Toast makeText(Context context, String msg, int length, int type) {
 
@@ -43,8 +44,8 @@ public class TastyToast {
                 View layout = LayoutInflater.from(context).inflate(R.layout.success_toast_layout, null, false);
                 TextView text = (TextView) layout.findViewById(R.id.toastMessage);
                 text.setText(msg);
-                successToastView = (SuccessToastView) layout.findViewById(R.id.successView);
-                successToastView.startAnim();
+                toastView = (SuccessToastView) layout.findViewById(R.id.successView);
+                toastView.startAnim();
                 text.setBackgroundResource(R.drawable.success_toast);
                 text.setTextColor(Color.parseColor("#FFFFFF"));
                 toast.setView(layout);
@@ -56,7 +57,7 @@ public class TastyToast {
                 TextView text = (TextView) layout.findViewById(R.id.toastMessage);
                 text.setText(msg);
 
-                warningToastView = (WarningToastView) layout.findViewById(R.id.warningView);
+                toastView = (WarningToastView) layout.findViewById(R.id.warningView);
                 SpringSystem springSystem = SpringSystem.create();
                 final Spring spring = springSystem.createSpring();
                 spring.setCurrentValue(1.8);
@@ -69,8 +70,8 @@ public class TastyToast {
                         float value = (float) spring.getCurrentValue();
                         float scale = (float) (0.9f - (value * 0.5f));
 
-                        warningToastView.setScaleX(scale);
-                        warningToastView.setScaleY(scale);
+                        toastView.setScaleX(scale);
+                        toastView.setScaleY(scale);
                     }
                 });
                 Thread t = new Thread(new Runnable() {
@@ -95,8 +96,8 @@ public class TastyToast {
 
                 TextView text = (TextView) layout.findViewById(R.id.toastMessage);
                 text.setText(msg);
-                errorToastView = (ErrorToastView) layout.findViewById(R.id.errorView);
-                errorToastView.startAnim();
+                toastView = (ErrorToastView) layout.findViewById(R.id.errorView);
+                toastView.startAnim();
                 text.setBackgroundResource(R.drawable.error_toast);
                 text.setTextColor(Color.parseColor("#FFFFFF"));
                 toast.setView(layout);
@@ -107,8 +108,8 @@ public class TastyToast {
 
                 TextView text = (TextView) layout.findViewById(R.id.toastMessage);
                 text.setText(msg);
-                infoToastView = (InfoToastView) layout.findViewById(R.id.infoView);
-                infoToastView.startAnim();
+                toastView = (InfoToastView) layout.findViewById(R.id.infoView);
+                toastView.startAnim();
                 text.setBackgroundResource(R.drawable.info_toast);
                 text.setTextColor(Color.parseColor("#FFFFFF"));
                 toast.setView(layout);
@@ -119,8 +120,8 @@ public class TastyToast {
 
                 TextView text = (TextView) layout.findViewById(R.id.toastMessage);
                 text.setText(msg);
-                defaultToastView = (DefaultToastView) layout.findViewById(R.id.defaultView);
-                defaultToastView.startAnim();
+                toastView = (DefaultToastView) layout.findViewById(R.id.defaultView);
+                toastView.startAnim();
                 text.setBackgroundResource(R.drawable.default_toast);
                 text.setTextColor(Color.parseColor("#FFFFFF"));
                 toast.setView(layout);
@@ -131,8 +132,8 @@ public class TastyToast {
 
                 TextView text = (TextView) layout.findViewById(R.id.toastMessage);
                 text.setText(msg);
-                confusingToastView = (ConfusingToastView) layout.findViewById(R.id.confusingView);
-                confusingToastView.startAnim();
+                toastView = (ConfusingToastView) layout.findViewById(R.id.confusingView);
+                toastView.startAnim();
                 text.setBackgroundResource(R.drawable.confusing_toast);
                 text.setTextColor(Color.parseColor("#FFFFFF"));
                 toast.setView(layout);
@@ -143,5 +144,4 @@ public class TastyToast {
         toast.show();
         return toast;
     }
-
 }

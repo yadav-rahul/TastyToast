@@ -113,7 +113,6 @@ public class InfoToastView extends ToastView {
 
                 mAnimatedValue = (float) valueAnimator.getAnimatedValue();
 
-                //   Log.i(TAG, "Value : " + mAnimatedValue);
                 if (mAnimatedValue < 0.90) {
                     endPoint = ((2 * (mWidth) - (4 * mPadding)) * (mAnimatedValue / 2)) + mPadding;
                 } else {

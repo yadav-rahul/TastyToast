@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.WindowManager;
 
 import com.sdsmdg.tastytoast.TastyToast;
+import com.sdsmdg.tastytoast.TastyToastManager;
 
 
 public class MainActivity extends AppCompatActivity {

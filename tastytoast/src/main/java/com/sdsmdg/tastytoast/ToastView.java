@@ -21,8 +21,8 @@ public abstract class ToastView extends View {
         super(context, attrs, defStyleAttr);
     }
 
-    abstract void startAnim();
-    abstract void stopAnim();
+    public abstract void startAnim();
+    public abstract void stopAnim();
 
     public int dip2px(float dpValue) {
         final float scale = getContext().getResources().getDisplayMetrics().density;
