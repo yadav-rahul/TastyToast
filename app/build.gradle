@@ -10,6 +10,7 @@ android {
         targetSdkVersion 25
         versionCode 3
         versionName "1.1.2"
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
     buildTypes {
         release {
@@ -28,4 +29,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile project(":tastytoast")
     compile 'com.android.support:appcompat-v7:25.2.0'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
 }
