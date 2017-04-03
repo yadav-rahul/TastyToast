@@ -24,7 +24,7 @@
             android:layout_centerHorizontal="true"
             android:layout_weight="1"
             android:onClick="showSuccessToast"
-            android:text="Download" />
+            android:text="Success" />
 
         <Button
             android:id="@+id/button2"

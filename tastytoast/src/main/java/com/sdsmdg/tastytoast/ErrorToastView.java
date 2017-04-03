@@ -13,7 +13,7 @@ import android.view.animation.LinearInterpolator;
 /**
  * Created by rahul on 22/7/16.
  */
-public class ErrorToastView extends View {
+public class ErrorToastView extends ToastView {
 
     RectF rectF = new RectF();
     RectF leftEyeRectF = new RectF();
@@ -82,11 +82,6 @@ public class ErrorToastView extends View {
             canvas.drawArc(leftEyeRectF, 160, -220, false, mPaint);
             canvas.drawArc(rightEyeRectF, 20, 220, false, mPaint);
         }
-    }
-
-    public int dip2px(float dpValue) {
-        final float scale = getContext().getResources().getDisplayMetrics().density;
-        return (int) (dpValue * scale + 0.5f);
     }
 
     public void startAnim() {

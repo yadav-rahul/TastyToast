@@ -12,7 +12,7 @@ import android.view.View;
 /**
  * Created by rahul on 25/7/16.
  */
-public class WarningToastView extends View {
+public class WarningToastView extends ToastView {
 
     RectF rectFOne = new RectF();
     RectF rectFTwo = new RectF();
@@ -95,5 +95,13 @@ public class WarningToastView extends View {
         DisplayMetrics metrics = getContext().getResources().getDisplayMetrics();
         float px = dp * ((float) metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
         return px;
+    }
+
+    public void startAnim(){
+
+    }
+
+    public void stopAnim(){
+
     }
 }

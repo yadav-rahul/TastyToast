@@ -13,7 +13,7 @@ import android.view.animation.LinearInterpolator;
 /**
  * Created by rahul on 27/7/16.
  */
-public class InfoToastView extends View {
+public class InfoToastView extends ToastView {
 
     RectF rectF = new RectF();
     ValueAnimator valueAnimator;
@@ -86,11 +86,6 @@ public class InfoToastView extends View {
         }
     }
 
-    public int dip2px(float dpValue) {
-        final float scale = getContext().getResources().getDisplayMetrics().density;
-        return (int) (dpValue * scale + 0.5f);
-    }
-
     public void startAnim() {
         stopAnim();
         startViewAnim(0f, 1f, 2000);
@@ -118,7 +113,6 @@ public class InfoToastView extends View {
 
                 mAnimatedValue = (float) valueAnimator.getAnimatedValue();
 
-                //   Log.i(TAG, "Value : " + mAnimatedValue);
                 if (mAnimatedValue < 0.90) {
                     endPoint = ((2 * (mWidth) - (4 * mPadding)) * (mAnimatedValue / 2)) + mPadding;
                 } else {
