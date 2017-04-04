@@ -17,6 +17,7 @@ public class WarningToastView extends View {
     RectF rectFOne = new RectF();
     RectF rectFTwo = new RectF();
     RectF rectFThree = new RectF();
+    public int mPaintColor = Color.parseColor("#f0ad4e");
     private Paint mPaint;
     private float mWidth = 0f;
     private float mHeight = 0f;
@@ -54,7 +55,7 @@ public class WarningToastView extends View {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setColor(Color.parseColor("#f0ad4e"));
+        mPaint.setColor(mPaintColor);
         mPaint.setStrokeWidth(mStrokeWidth);
     }
 

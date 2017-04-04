@@ -16,6 +16,7 @@ public class DefaultToastView extends View {
 
     ValueAnimator valueAnimator;
     float mAnimatedValue = 0f;
+    public int mPaintColor = Color.parseColor("#BB000000");
     private Paint mPaint, mSpikePaint;
     private float mWidth = 0f;
     private float mPadding = 0f;
@@ -46,13 +47,13 @@ public class DefaultToastView extends View {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setColor(Color.parseColor("#222222"));
+        mPaint.setColor(mPaintColor);
         mPaint.setStrokeWidth(dip2px(2));
 
         mSpikePaint = new Paint();
         mSpikePaint.setAntiAlias(true);
         mSpikePaint.setStyle(Paint.Style.STROKE);
-        mSpikePaint.setColor(Color.parseColor("#222222"));
+        mSpikePaint.setColor(mPaintColor);
         mSpikePaint.setStrokeWidth(dip2px(4));
 
         mSpikeLength = dip2px(4);
