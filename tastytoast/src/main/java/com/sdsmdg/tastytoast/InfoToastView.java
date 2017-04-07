@@ -19,6 +19,7 @@ public class InfoToastView extends View {
     ValueAnimator valueAnimator;
     float mAnimatedValue = 0f;
     private String TAG = "com.sdsmdg.tastytoast";
+    public int mPaintColor = Color.parseColor("#337ab7");
     private Paint mPaint;
     private float mWidth = 0f;
     private float mEyeWidth = 0f;
@@ -56,7 +57,7 @@ public class InfoToastView extends View {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setColor(Color.parseColor("#337ab7"));
+        mPaint.setColor(mPaintColor);
         mPaint.setStrokeWidth(dip2px(2));
 
     }

@@ -18,6 +18,7 @@ public class SuccessToastView extends View {
     RectF rectF = new RectF();
     ValueAnimator valueAnimator;
     float mAnimatedValue = 0f;
+    public int mPaintColor = Color.parseColor("#5cb85c");
     private Paint mPaint;
     private float mWidth = 0f;
     private float mEyeWidth = 0f;
@@ -52,7 +53,7 @@ public class SuccessToastView extends View {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setColor(Color.parseColor("#5cb85c"));
+        mPaint.setColor(mPaintColor);
         mPaint.setStrokeWidth(dip2px(2));
     }
 

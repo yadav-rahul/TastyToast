@@ -21,6 +21,7 @@ public class ConfusingToastView extends View {
     Bitmap eye;
     ValueAnimator valueAnimator;
     float angle = 0f;
+    public int mPaintColor = Color.parseColor("#FE9D4D");
     private Paint mPaint;
     private float mWidth = 0f;
     private float mHeight = 0f;
@@ -50,7 +51,7 @@ public class ConfusingToastView extends View {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setColor(Color.parseColor("#FE9D4D"));
+        mPaint.setColor(mPaintColor);
     }
 
     private void initPath() {

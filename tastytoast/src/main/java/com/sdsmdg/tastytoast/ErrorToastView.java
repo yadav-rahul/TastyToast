@@ -20,6 +20,7 @@ public class ErrorToastView extends View {
     RectF rightEyeRectF = new RectF();
     ValueAnimator valueAnimator;
     float mAnimatedValue = 0f;
+    public int mPaintColor = Color.parseColor("#d9534f");
     private Paint mPaint;
     private float mWidth = 0f;
     private float mEyeWidth = 0f;
@@ -55,7 +56,7 @@ public class ErrorToastView extends View {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setColor(Color.parseColor("#d9534f"));
+        mPaint.setColor(mPaintColor);
         mPaint.setStrokeWidth(dip2px(2));
     }
 

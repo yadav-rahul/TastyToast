@@ -2,6 +2,8 @@ package com.sdsmdg.tastytoast;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -34,7 +36,7 @@ public class TastyToast {
     static DefaultToastView defaultToastView;
     static ConfusingToastView confusingToastView;
 
-    public static Toast makeText(Context context, String msg, int length, int type) {
+    public static Toast makeText(Context context, String msg, int length, int type, Integer color) {
 
         Toast toast = new Toast(context);
 
@@ -45,19 +47,24 @@ public class TastyToast {
                 TextView text = (TextView) layout.findViewById(R.id.toastMessage);
                 text.setText(msg);
                 successToastView = (SuccessToastView) layout.findViewById(R.id.successView);
-                successToastView.startAnim();
                 text.setBackgroundResource(R.drawable.success_toast);
                 text.setTextColor(Color.parseColor("#FFFFFF"));
+                if (color != null) {
+                    successToastView.mPaintColor = color;
+                    Drawable background = text.getBackground();
+                    ((GradientDrawable) background).setColor(color);
+                }
+                successToastView.startAnim();
                 toast.setView(layout);
                 break;
             }
             case 2: {
                 View layout = LayoutInflater.from(context).inflate(R.layout.warning_toast_layout, null, false);
-
                 TextView text = (TextView) layout.findViewById(R.id.toastMessage);
                 text.setText(msg);
-
                 warningToastView = (WarningToastView) layout.findViewById(R.id.warningView);
+                text.setBackgroundResource(R.drawable.warning_toast);
+                text.setTextColor(Color.parseColor("#FFFFFF"));
                 SpringSystem springSystem = SpringSystem.create();
                 final Spring spring = springSystem.createSpring();
                 spring.setCurrentValue(1.8);
@@ -69,7 +76,6 @@ public class TastyToast {
                     public void onSpringUpdate(Spring spring) {
                         float value = (float) spring.getCurrentValue();
                         float scale = (float) (0.9f - (value * 0.5f));
-
                         warningToastView.setScaleX(scale);
                         warningToastView.setScaleY(scale);
                     }
@@ -84,58 +90,78 @@ public class TastyToast {
                         spring.setEndValue(0.4f);
                     }
                 });
-
                 t.start();
-                text.setBackgroundResource(R.drawable.warning_toast);
-                text.setTextColor(Color.parseColor("#FFFFFF"));
+                if(color!=null)
+                {
+                    warningToastView.mPaintColor = color;
+                    Drawable background = text.getBackground();
+                    ((GradientDrawable) background).setColor(color);
+                }
                 toast.setView(layout);
                 break;
             }
             case 3: {
                 View layout = LayoutInflater.from(context).inflate(R.layout.error_toast_layout, null, false);
-
                 TextView text = (TextView) layout.findViewById(R.id.toastMessage);
                 text.setText(msg);
                 errorToastView = (ErrorToastView) layout.findViewById(R.id.errorView);
-                errorToastView.startAnim();
                 text.setBackgroundResource(R.drawable.error_toast);
                 text.setTextColor(Color.parseColor("#FFFFFF"));
+                if (color != null) {
+                    errorToastView.mPaintColor = color;
+                    Drawable background = text.getBackground();
+                    ((GradientDrawable) background).setColor(color);
+                }
+                errorToastView.startAnim();
                 toast.setView(layout);
                 break;
             }
             case 4: {
                 View layout = LayoutInflater.from(context).inflate(R.layout.info_toast_layout, null, false);
-
                 TextView text = (TextView) layout.findViewById(R.id.toastMessage);
                 text.setText(msg);
                 infoToastView = (InfoToastView) layout.findViewById(R.id.infoView);
-                infoToastView.startAnim();
                 text.setBackgroundResource(R.drawable.info_toast);
                 text.setTextColor(Color.parseColor("#FFFFFF"));
+                if (color != null) {
+                    infoToastView.mPaintColor = color;
+                    Drawable background = text.getBackground();
+                    ((GradientDrawable) background).setColor(color);
+                }
+                infoToastView.startAnim();
                 toast.setView(layout);
                 break;
             }
             case 5: {
                 View layout = LayoutInflater.from(context).inflate(R.layout.default_toast_layout, null, false);
-
                 TextView text = (TextView) layout.findViewById(R.id.toastMessage);
                 text.setText(msg);
                 defaultToastView = (DefaultToastView) layout.findViewById(R.id.defaultView);
-                defaultToastView.startAnim();
                 text.setBackgroundResource(R.drawable.default_toast);
                 text.setTextColor(Color.parseColor("#FFFFFF"));
+                if (color != null) {
+                    defaultToastView.mPaintColor = color;
+                    Drawable background = text.getBackground();
+                    ((GradientDrawable) background).setColor(color);
+                }
+                defaultToastView.startAnim();
                 toast.setView(layout);
                 break;
             }
             case 6: {
                 View layout = LayoutInflater.from(context).inflate(R.layout.confusing_toast_layout, null, false);
-
                 TextView text = (TextView) layout.findViewById(R.id.toastMessage);
                 text.setText(msg);
                 confusingToastView = (ConfusingToastView) layout.findViewById(R.id.confusingView);
-                confusingToastView.startAnim();
                 text.setBackgroundResource(R.drawable.confusing_toast);
                 text.setTextColor(Color.parseColor("#FFFFFF"));
+                if(color!=null)
+                {
+                    confusingToastView.mPaintColor = color;
+                    Drawable background = text.getBackground();
+                    ((GradientDrawable) background).setColor(color);
+                }
+                confusingToastView.startAnim();
                 toast.setView(layout);
                 break;
             }
