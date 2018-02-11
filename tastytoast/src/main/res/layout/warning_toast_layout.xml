@@ -29,11 +29,11 @@
                 android:id="@+id/warningView"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_gravity="center_vertical|left"
+                android:layout_gravity="center_vertical|start"
                 android:layout_margin="10px"
                 android:fillAfter="true"
                 android:fillEnabled="true"
-                android:gravity="center_vertical|left"
+                android:gravity="center_vertical|start"
                 android:scaleX="0"
                 android:scaleY="0" />
 
@@ -48,5 +48,4 @@
             android:text="New Text" />
 
     </LinearLayout>
-
 </LinearLayout>
