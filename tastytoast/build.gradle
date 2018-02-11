@@ -1,12 +1,11 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 27
 
     defaultConfig {
-        minSdkVersion 11
-        targetSdkVersion 25
+        minSdkVersion 14
+        targetSdkVersion 27
         versionCode 7
         versionName "0.1.1"
     }
@@ -22,10 +21,10 @@ android {
     }
 }
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:25.2.0'
-    compile 'com.facebook.rebound:rebound:0.3.8'
+    implementation 'com.android.support:appcompat-v7:27.0.2'
+    implementation 'com.facebook.rebound:rebound:0.3.8'
 }
 
 apply plugin: 'com.github.dcendents.android-maven'
