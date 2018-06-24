@@ -35,11 +35,12 @@ public class DefaultToastView extends View {
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        initPaint();
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
         mWidth = getMeasuredWidth();
         mPadding = dip2px(5);
+        initPaint();
+        startAnim();
     }
 
     private void initPaint() {
@@ -96,8 +97,6 @@ public class DefaultToastView extends View {
         valueAnimator = ValueAnimator.ofFloat(startF, endF);
         valueAnimator.setDuration(time);
         valueAnimator.setInterpolator(new LinearInterpolator());
-        valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
-        valueAnimator.setRepeatMode(ValueAnimator.RESTART);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
