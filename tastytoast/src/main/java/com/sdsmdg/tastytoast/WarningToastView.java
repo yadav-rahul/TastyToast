@@ -9,6 +9,11 @@ import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.View;
 
+import com.facebook.rebound.SimpleSpringListener;
+import com.facebook.rebound.Spring;
+import com.facebook.rebound.SpringConfig;
+import com.facebook.rebound.SpringSystem;
+
 /**
  * Created by rahul on 25/7/16.
  */
@@ -39,15 +44,17 @@ public class WarningToastView extends View {
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        initPaint();
-        initRect();
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+
         mHeight = getMeasuredHeight();
         mWidth = getMeasuredWidth();
         mPadding = convertDpToPixel(2);
         mPaddingBottom = mPadding * 2;
         mStrokeWidth = convertDpToPixel(2);
+        initPaint();
+        initRect();
+        startAnim();
     }
 
     private void initPaint() {
@@ -66,6 +73,37 @@ public class WarningToastView extends View {
                 mHeight / 3, mPadding + convertDpToPixel(18), convertDpToPixel(3) + mPadding + mHeight / 2);
     }
 
+    private void startAnim(){
+        SpringSystem springSystem = SpringSystem.create();
+        final Spring spring = springSystem.createSpring();
+        spring.setCurrentValue(1.8);
+        SpringConfig config = new SpringConfig(40, 5);
+        spring.setSpringConfig(config);
+        spring.addListener(new SimpleSpringListener() {
+
+            @Override
+            public void onSpringUpdate(Spring spring) {
+                float value = (float) spring.getCurrentValue();
+                float scale = (float) (0.9f - (value * 0.5f));
+
+                setScaleX(scale);
+                setScaleY(scale);
+            }
+        });
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                }
+                spring.setEndValue(0.4f);
+            }
+        });
+
+        t.start();
+
+    }
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
