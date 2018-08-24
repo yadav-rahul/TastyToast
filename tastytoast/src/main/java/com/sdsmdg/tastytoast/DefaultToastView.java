@@ -11,8 +11,9 @@ import android.view.animation.LinearInterpolator;
 
 /**
  * Created by rahul on 27/7/16.
+ * Modified by chankruze on 24/08/2018.
  */
-public class DefaultToastView extends View {
+public class DefaultToastView extends ToastView {
 
     ValueAnimator valueAnimator;
     float mAnimatedValue = 0f;
@@ -112,10 +113,5 @@ public class DefaultToastView extends View {
 
         }
         return valueAnimator;
-    }
-
-    public int dip2px(float dpValue) {
-        final float scale = getContext().getResources().getDisplayMetrics().density;
-        return (int) (dpValue * scale);
     }
 }
