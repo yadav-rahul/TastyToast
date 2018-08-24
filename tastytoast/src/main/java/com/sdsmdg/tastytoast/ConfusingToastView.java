@@ -15,8 +15,9 @@ import android.view.animation.LinearInterpolator;
 /**
  * Created by Anas Altair on 8/31/2016.
  * Modified by rahul on 16/09/2016
+ * Modified by chankruze on 24/08/2018.
  */
-public class ConfusingToastView extends View {
+public class ConfusingToastView extends ToastView {
 
     Bitmap eye;
     ValueAnimator valueAnimator;

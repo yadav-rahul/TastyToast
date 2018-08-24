@@ -21,31 +21,31 @@ public class MainActivity extends AppCompatActivity {
 
     public void showSuccessToast(View view) {
         TastyToast.makeText(getApplicationContext(), "Download Successful !", TastyToast.LENGTH_LONG,
-                TastyToast.SUCCESS);
+                TastyToast.Type.SUCCESS);
     }
 
     public void showWarningToast(View view) {
         TastyToast.makeText(getApplicationContext(), "Are you sure ?", TastyToast.LENGTH_LONG,
-                TastyToast.WARNING);
+                TastyToast.Type.WARNING);
     }
 
     public void showErrorToast(View view) {
         TastyToast.makeText(getApplicationContext(), "Downloading failed ! Try again later ", TastyToast.LENGTH_LONG,
-                TastyToast.ERROR);
+                TastyToast.Type.ERROR);
     }
     public void showInfoToast(View view) {
         TastyToast.makeText(getApplicationContext(), "Searching for username : 'Rahul' ", TastyToast.LENGTH_LONG,
-                TastyToast.INFO);
+                TastyToast.Type.INFO);
     }
 
     public void showDefaultToast(View view) {
         TastyToast.makeText(getApplicationContext(), "This is Default Toast", TastyToast.LENGTH_LONG,
-                TastyToast.DEFAULT);
+                TastyToast.Type.DEFAULT);
     }
 
 
     public void showConfusingToast(View view) {
         TastyToast.makeText(getApplicationContext(), "I don't Know !", TastyToast.LENGTH_LONG,
-                TastyToast.CONFUSING);
+                TastyToast.Type.CONFUSING);
     }
 }
